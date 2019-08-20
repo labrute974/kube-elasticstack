@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+  labels:
+    {{- include "elastic.labels" . | nindent 4 }}
+data:
+  elasticsearch.yml: |
+    cluster.name: {{ .Release.Name }}
+    http.port: {{ .Values.httpPort }}
+    discovery.type: single-node
+{{- range $key, $value := .Values.esConfig.elasticsearchConf }}
+    {{ $key }}: {{ $value }}
+{{- end }}

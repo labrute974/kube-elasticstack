@@ -35,6 +35,8 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "elastic.labels" -}}
+commit: {{ .Values.commit }}
+environment: {{ .Values.environment }}
 app.kubernetes.io/name: {{ include "elastic.name" . }}
 helm.sh/chart: {{ include "elastic.chart" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}

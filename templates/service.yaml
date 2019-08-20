@@ -5,9 +5,9 @@ metadata:
   labels:
 {{ include "elastic.labels" . | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.serviceType }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.httpPort }}
       targetPort: http
       protocol: TCP
       name: http
