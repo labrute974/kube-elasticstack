@@ -21,7 +21,7 @@ spec:
           name: {{ .Release.Name }}-config
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image }}:{{ .Values.imageTag }}"
+        image: "{{ .Values.image }}:{{ .Values.global.imageTag }}"
         imagePullPolicy: {{ .Values.imagePullPolicy }}
         volumeMounts:
         - name: esconfig
