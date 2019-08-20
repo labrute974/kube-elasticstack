@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-config
   labels:
-    {{- include "elastic.labels" . | nindent 4 }}
+    {{- include "chart.labels" . | nindent 4 }}
 data:
   elasticsearch.yml: |
     cluster.name: {{ .Release.Name }}
@@ -12,3 +12,5 @@ data:
 {{- range $key, $value := .Values.esConfig.elasticsearchConf }}
     {{ $key }}: {{ $value }}
 {{- end }}
+  jvm.options: |-
+    {{ .Files.Get "files/jvm.options" | nindent 4 }}

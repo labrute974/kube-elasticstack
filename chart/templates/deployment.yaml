@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "elastic.fullname" . }}
+  name: {{ include "chart.fullname" . }}
   labels:
-{{ include "elastic.labels" . | indent 4 }}
+{{ include "chart.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "elastic.name" . }}
+      app.kubernetes.io/name: {{ include "chart.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-{{ include "elastic.labels" . | indent 8 }}
+{{ include "chart.labels" . | indent 8 }}
     spec:
       volumes:
       - name: esconfig
@@ -28,9 +28,13 @@ spec:
           mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
           subPath: elasticsearch.yml
           readOnly: true
+        - name: esconfig
+          mountPath: /usr/share/elasticsearch/config/jvm.options
+          subPath: jvm.options
+          readOnly: true
         env:
         - name: ES_JAVA_OPTS
-          value: .Values.esJavaOpts
+          value: {{ .Values.esJavaOpts }}
         ports:
           - name: http
             containerPort: {{ .Values.httpPort }}
