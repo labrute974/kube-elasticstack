@@ -1,0 +1,26 @@
+# Default values for kibana.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image: docker.elastic.co/kibana/kibana
+imagePullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceType: ClusterIP
+httpPort: 5601
+
+ingressHosts:
+- host: kibana.krystal.local
+  paths: [ '/' ]
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 512Mi

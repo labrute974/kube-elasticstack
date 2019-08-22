@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-kibanaconf
+  labels:
+    {{- include "kibana.labels" . | nindent 4 }}
+data:
+  kibana.yml: |
+    elasticsearch.hosts: [ "http://elasticsearch-{{ .Values.global.environment }}:9200" ]
+    logging.json: true
+    server.port: {{ .Values.httpPort }}
+    xpack.monitoring.ui.container.elasticsearch.enabled: true

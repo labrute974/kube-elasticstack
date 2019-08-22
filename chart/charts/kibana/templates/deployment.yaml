@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kibana.fullname" . }}
+  labels:
+{{ include "kibana.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "kibana.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "kibana.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: kibanaconfig
+        configMap:
+          name: {{ .Release.Name }}-kibanaconf
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image }}:{{ .Values.global.imageTag }}"
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        volumeMounts:
+        - name: kibanaconfig
+          mountPath: /usr/share/kibana/config/kibana.yml
+          subPath: kibana.yml
+          readOnly: true
+        ports:
+          - name: http
+            containerPort: {{ .Values.httpPort }}
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 300
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 300
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}

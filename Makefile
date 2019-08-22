@@ -10,4 +10,4 @@ lint:
 %-production: env := production
 
 deploy-%:
-	helm upgrade $(APP_NAME)-$(env) chart/ -i --set "commit=$(COMMIT),environment=$(env)"
+	helm upgrade $(APP_NAME)-$(env) chart/ -i --set "global.commit=$(COMMIT),global.environment=$(env)"
