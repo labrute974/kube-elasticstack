@@ -4,7 +4,6 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: metricbeat
-  namespace: kube-system
   labels:
 {{ include "metricbeat.labels" . | indent 4 }}
 spec:

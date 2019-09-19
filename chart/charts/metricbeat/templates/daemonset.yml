@@ -4,7 +4,6 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: metricbeat
-  namespace: kube-system
   labels:
 {{ include "metricbeat.labels" . | indent 4 }}
 spec:

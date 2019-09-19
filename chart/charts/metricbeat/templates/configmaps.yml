@@ -3,9 +3,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: metricbeat-daemonset-config
-  namespace: kube-system
   labels:
-    k8s-app: metricbeat
+{{ include "metricbeat.labels" . | indent 4 }}
 data:
   metricbeat.yml: |-
     metricbeat.config.modules:
@@ -33,9 +32,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: metricbeat-daemonset-modules
-  namespace: kube-system
   labels:
-    k8s-app: metricbeat
+{{ include "metricbeat.labels" . | indent 4 }}
 data:
   system.yml: |-
     - module: system
@@ -91,9 +89,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: metricbeat-deployment-config
-  namespace: kube-system
   labels:
-    k8s-app: metricbeat
+{{ include "metricbeat.labels" . | indent 4 }}
 data:
   metricbeat.yml: |-
     metricbeat.config.modules:
@@ -111,11 +108,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: metricbeat-deployment-modules
-  namespace: kube-system
   labels:
-    k8s-app: metricbeat
+{{ include "metricbeat.labels" . | indent 4 }}
 data:
-  # This module requires `kube-state-metrics` up and running under `kube-system` namespace
+  # This module requires `kube-state-metrics` up and running in the same kube namespace
   kubernetes.yml: |-
     - module: kubernetes
       metricsets:
