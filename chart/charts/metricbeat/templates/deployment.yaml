@@ -13,7 +13,7 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "metricbeat.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-     spec:
+    spec:
       serviceAccountName: metricbeat
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
