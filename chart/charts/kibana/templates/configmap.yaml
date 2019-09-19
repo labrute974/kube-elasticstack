@@ -8,5 +8,6 @@ data:
   kibana.yml: |
     elasticsearch.hosts: [ "http://elasticsearch-{{ .Values.global.environment }}:9200" ]
     logging.json: true
+    server.host:  "0.0.0.0"
     server.port: {{ .Values.httpPort }}
     xpack.monitoring.ui.container.elasticsearch.enabled: true
