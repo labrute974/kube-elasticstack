@@ -19,6 +19,6 @@ ingressHosts:
 
 resources:
   limits:
-    memory: 512M
+    memory: 1024M
   requests:
-    memory: 512M
+    memory: 1024M
