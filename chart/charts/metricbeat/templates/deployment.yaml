@@ -1,12 +1,16 @@
 ---
 # Deploy singleton instance in the whole cluster for some unique data sources, like kube-state-metrics
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: metricbeat
   labels:
 {{ include "metricbeat.labels" . | indent 4 }}
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "metricbeat.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
