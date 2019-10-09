@@ -35,7 +35,7 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "chart.labels" -}}
-commit: {{ .Values.global.commit }}
+commit: "{{ .Values.global.commit }}"
 environment: {{ .Values.global.environment }}
 app.kubernetes.io/name: {{ include "chart.name" . }}
 helm.sh/chart: {{ include "chart.chart" . }}
