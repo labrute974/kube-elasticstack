@@ -7,7 +7,7 @@ replicaCount: 1
 image: docker.elastic.co/beats/metricbeat
 imagePullPolicy: IfNotPresent
 
-nameOverride: ""
+nameOverride: "metricbeat"
 fullnameOverride: ""
 
 resources:
