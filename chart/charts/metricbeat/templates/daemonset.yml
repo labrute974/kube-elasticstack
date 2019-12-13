@@ -23,7 +23,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: metricbeat
-        image: docker.elastic.co/beats/metricbeat:7.3.0
+        image: "{{ .Values.image }}:{{ .Values.global.imageTag }}"
         args: [
           "-c", "/etc/metricbeat.yml",
           "-e",
