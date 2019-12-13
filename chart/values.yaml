@@ -37,4 +37,4 @@ esConfig:
     node.data: true
 
 global:
-  imageTag: 7.3.0
+  imageTag: 7.5.0
