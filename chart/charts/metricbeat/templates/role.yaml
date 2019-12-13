@@ -6,7 +6,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: metricbeat
-  namespace: default
+  namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: metricbeat
@@ -33,10 +33,10 @@ rules:
 - apiGroups: ["apps"]
   resources:
   - statefulsets
+  - replicasets
   - deployments
   verbs: ["get", "list", "watch"]
-- apiGroups:
-  - ""
+- apiGroups: [""]
   resources:
   - nodes/stats
   verbs:
