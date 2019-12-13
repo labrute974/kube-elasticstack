@@ -9,7 +9,7 @@ esMajorVersion: ""
 image: docker.elastic.co/elasticsearch/elasticsearch
 imagePullPolicy: IfNotPresent
 
-esJavaOpts: "-Xmx256m -Xms256m"
+esJavaOpts: "-Xmx2048m -Xms2048m"
 
 networkHost: "0.0.0.0"
 
@@ -24,11 +24,9 @@ serviceType: ClusterIP
 
 resources:
   limits:
-    cpu: 200m
-    memory: 512Mi
+    memory: 3Gi
   requests:
-    cpu: 100m
-    memory: 512Mi
+    memory: 2.4Gi
 
 esConfig:
   elasticsearchConf:
