@@ -1,0 +1,6 @@
+---
+image: docker.elastic.co/beats/filebeat
+imagePullPolicy: IfNotPresent
+
+nameOverride: "filebeat"
+fullnameOverride: ""
